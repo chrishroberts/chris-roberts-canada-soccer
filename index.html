@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pathway to Profit — A Domestic Solidarity Framework for Canadian Soccer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pitch:#0A100D;
+  --pitch2:#111A15;
+  --pitch3:#18241D;
+  --chalk:#EFEDE4;
+  --chalk-dim:#C9C7BC;
+  --mist:#8B958E;
+  --maple:#E0332C;
+  --payout:#F0B93B;
+  --payout-dim:#8A6C24;
+  --line:rgba(239,237,228,.14);
+  --radius:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--pitch);
+  color:var(--chalk);
+  font-family:'Archivo',system-ui,sans-serif;
+  font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.display{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.01em;line-height:.95;font-weight:400}
+.data{font-family:'Space Grotesk',monospace;font-variant-numeric:tabular-nums}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.eyebrow{font-family:'Space Grotesk';font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--maple);font-weight:700}
+.eyebrow.gold{color:var(--payout)}
+section{padding:88px 0;border-top:1px solid var(--line)}
+:focus-visible{outline:2px solid var(--payout);outline-offset:3px;border-radius:4px}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,16,13,.88);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:'Anton';font-size:17px;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand .dot{width:9px;height:9px;background:var(--maple);border-radius:50%;display:inline-block}
+.nav-links{display:flex;gap:26px}
+.nav-links a{font-family:'Space Grotesk';font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--chalk-dim)}
+.nav-links a:hover{color:var(--payout)}
+@media(max-width:680px){.nav-links{display:none}}
+
+/* ---------- hero ---------- */
+header.hero{position:relative;overflow:hidden;border-top:none;padding:110px 0 96px}
+.hero-lines{position:absolute;inset:0;pointer-events:none;opacity:.5}
+.hero-lines .arc{position:absolute;right:-180px;top:-180px;width:560px;height:560px;border:1.5px solid rgba(239,237,228,.10);border-radius:50%}
+.hero-lines .arc.a2{right:-120px;top:-120px;width:440px;height:440px}
+.hero-lines .vline{position:absolute;left:22px;top:0;bottom:0;width:1.5px;background:linear-gradient(var(--line),rgba(239,237,228,.03))}
+.hero h1{font-size:clamp(56px,10vw,124px);margin:20px 0 8px}
+.hero h1 .up{color:var(--chalk)}
+.hero h1 .back{color:var(--payout)}
+.hero p.sub{max-width:640px;font-size:18px;color:var(--chalk-dim);margin:22px 0 36px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  font-family:'Space Grotesk';font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;
+  padding:14px 26px;border-radius:6px;text-decoration:none;display:inline-block;border:1.5px solid transparent;
+  cursor:pointer;transition:transform .15s ease, background .15s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn.gold{background:var(--payout);color:#181206}
+.btn.gold:hover{background:#F7C85B}
+.btn.ghost{border-color:var(--line);color:var(--chalk)}
+.btn.ghost:hover{border-color:var(--payout);color:var(--payout)}
+.hero .tag{display:inline-flex;gap:9px;align-items:center;margin-top:44px;font-family:'Space Grotesk';font-size:13px;color:var(--mist)}
+.hero .tag b{color:var(--chalk)}
+
+/* ---------- problem ---------- */
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
+@media(max-width:780px){.stat-grid{grid-template-columns:1fr}}
+.stat{
+  background:var(--pitch2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px 24px;position:relative;
+}
+.stat::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:3px;border-radius:3px;background:var(--maple)}
+.stat.gold::before{background:var(--payout)}
+.stat .big{font-family:'Anton';font-size:44px;line-height:1;margin-bottom:8px}
+.stat .big.money{color:var(--payout)}
+.stat .lbl{font-size:14px;color:var(--chalk-dim)}
+.prose{max-width:700px;color:var(--chalk-dim);font-size:17px}
+.prose b{color:var(--chalk)}
+h2.sec{font-size:clamp(34px,5vw,54px);margin:14px 0 20px}
+
+/* ---------- pathway ladder ---------- */
+.ladder{position:relative;margin-top:52px;padding-left:36px}
+.flowline{position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--line);overflow:visible}
+.pulse{position:absolute;left:-3px;width:8px;height:8px;border-radius:50%;opacity:0}
+.pulse.up{background:var(--maple);animation:rise 5.5s linear infinite}
+.pulse.down{background:var(--payout);animation:fall 5.5s linear infinite}
+@keyframes rise{0%{top:100%;opacity:0}8%{opacity:1}92%{opacity:1}100%{top:0%;opacity:0}}
+@keyframes fall{0%{top:0%;opacity:0}8%{opacity:1}92%{opacity:1}100%{top:100%;opacity:0}}
+@media(prefers-reduced-motion:reduce){
+  .pulse{display:none}
+  *{animation:none!important;transition:none!important}
+}
+.tier{
+  display:grid;grid-template-columns:1fr 240px;gap:18px;align-items:start;
+  padding:22px 0;border-bottom:1px dashed rgba(239,237,228,.12);position:relative;
+}
+.tier:last-child{border-bottom:none}
+.tier::before{content:"";position:absolute;left:-32.5px;top:32px;width:11px;height:11px;border-radius:50%;background:var(--pitch);border:2.5px solid var(--mist)}
+.tier.pro::before{border-color:var(--maple)}
+.tier .t-name{font-family:'Anton';font-size:22px;letter-spacing:.02em;text-transform:uppercase}
+.tier .t-desc{color:var(--mist);font-size:15px;margin-top:4px;max-width:520px}
+.tier .earns{
+  font-family:'Space Grotesk';font-size:13px;color:var(--payout);
+  border:1px solid rgba(240,185,59,.35);border-radius:6px;padding:10px 12px;background:rgba(240,185,59,.05);
+}
+.tier .earns.none{color:var(--mist);border-color:var(--line);background:transparent}
+@media(max-width:680px){.tier{grid-template-columns:1fr}.tier .earns{max-width:340px}}
+
+/* ---------- simulator ---------- */
+#simulator{background:var(--pitch2);border-top:1px solid var(--line)}
+.sim-shell{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:44px}
+@media(max-width:880px){.sim-shell{grid-template-columns:1fr}}
+.panel{background:var(--pitch);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.panel h3{font-family:'Space Grotesk';font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:18px;font-weight:700}
+.fee-display{font-family:'Anton';font-size:clamp(40px,6vw,58px);color:var(--chalk);line-height:1;margin-bottom:6px}
+.fee-note{font-family:'Space Grotesk';font-size:13px;color:var(--mist);margin-bottom:18px}
+input[type=range]{width:100%;accent-color:var(--payout);height:32px;cursor:pointer}
+.fee-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.chip{
+  font-family:'Space Grotesk';font-size:13px;font-weight:500;color:var(--chalk-dim);
+  border:1px solid var(--line);background:transparent;border-radius:20px;padding:7px 14px;cursor:pointer;
+}
+.chip:hover{border-color:var(--payout);color:var(--payout)}
+.chip.on{background:var(--payout);color:#181206;border-color:var(--payout);font-weight:700}
+.fee-input{
+  font-family:'Space Grotesk';font-size:15px;background:var(--pitch3);border:1px solid var(--line);
+  color:var(--chalk);border-radius:6px;padding:8px 12px;width:150px;
+}
+.divider{border:none;border-top:1px dashed rgba(239,237,228,.14);margin:24px 0}
+
+.club-legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.club-btn{
+  display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:transparent;
+  border-radius:6px;padding:7px 12px;cursor:pointer;font-family:'Space Grotesk';font-size:13px;color:var(--chalk-dim);
+}
+.club-btn .sw{width:11px;height:11px;border-radius:3px}
+.club-btn.on{border-color:var(--chalk);color:var(--chalk);background:var(--pitch3)}
+.age-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+@media(max-width:420px){.age-grid{grid-template-columns:repeat(4,1fr)}}
+.age{
+  border:1px solid var(--line);border-radius:6px;padding:9px 0 7px;text-align:center;cursor:pointer;background:var(--pitch3);
+  transition:transform .1s ease;user-select:none;
+}
+.age:hover{transform:translateY(-1px)}
+.age .n{font-family:'Anton';font-size:19px;line-height:1;display:block}
+.age .w{font-family:'Space Grotesk';font-size:10px;color:var(--mist);letter-spacing:.05em}
+.hint{font-size:13px;color:var(--mist);margin-top:14px}
+.preset-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+.pool{
+  display:flex;align-items:baseline;gap:12px;margin-bottom:4px;flex-wrap:wrap;
+}
+.pool .amt{font-family:'Anton';font-size:clamp(44px,6vw,62px);color:var(--payout);line-height:1}
+.pool .cap{font-family:'Space Grotesk';font-size:13px;color:var(--mist)}
+.dist{margin-top:22px;display:flex;flex-direction:column;gap:16px}
+.d-row .d-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.d-row .d-name{font-family:'Space Grotesk';font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px}
+.d-row .d-name .sw{width:10px;height:10px;border-radius:3px;flex:none}
+.d-row .d-amt{font-family:'Space Grotesk';font-weight:700;font-size:16px;color:var(--payout)}
+.d-row .d-amt.muted{color:var(--mist)}
+.bar{height:10px;background:var(--pitch3);border-radius:6px;overflow:hidden}
+.bar .fill{height:100%;border-radius:6px;width:0%;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.d-sub{font-size:12px;color:var(--mist);margin-top:5px;font-family:'Space Grotesk'}
+.method{margin-top:26px;padding-top:18px;border-top:1px dashed rgba(239,237,228,.14);font-size:13px;color:var(--mist)}
+.csa-row{margin-top:18px;padding:14px 16px;border:1px solid rgba(224,51,44,.35);background:rgba(224,51,44,.06);border-radius:8px}
+.csa-row .d-head{margin-bottom:4px}
+.csa-row .d-name{color:var(--chalk)}
+.csa-row .d-sub{color:var(--mist)}
+
+/* ---------- value-to-board timeline ---------- */
+.value-rail{margin-top:44px;display:flex;flex-direction:column;gap:16px}
+.vcard{display:grid;grid-template-columns:160px 1fr;gap:22px;background:var(--pitch2);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+@media(max-width:680px){.vcard{grid-template-columns:1fr;gap:10px}}
+.vcard .horizon{font-family:'Anton';font-size:20px;text-transform:uppercase;color:var(--payout);line-height:1.15}
+.vcard .horizon .yrs{display:block;font-family:'Space Grotesk';font-size:12px;color:var(--mist);text-transform:none;letter-spacing:.03em;margin-top:6px;font-weight:500}
+.vcard ul{margin:0;padding-left:18px;color:var(--chalk-dim);font-size:14.5px;display:flex;flex-direction:column;gap:8px}
+.vcard ul li::marker{color:var(--maple)}
+.vcard .worth{display:inline-block;margin-top:12px;font-family:'Space Grotesk';font-size:12.5px;color:var(--payout);border:1px solid rgba(240,185,59,.35);border-radius:20px;padding:5px 12px}
+
+/* ---------- FAQ / objections ---------- */
+.faq-list{margin-top:40px;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--pitch2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.faq-q{
+  width:100%;text-align:left;background:none;border:none;color:var(--chalk);cursor:pointer;
+  padding:20px 22px;font-family:'Space Grotesk';font-weight:700;font-size:15.5px;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+}
+.faq-q .plus{font-family:'Anton';font-size:20px;color:var(--payout);flex:none;transition:transform .25s ease}
+.faq-item.open .faq-q .plus{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-a p{padding:0 22px 20px;color:var(--chalk-dim);font-size:14.5px;margin:0}
+.faq-item.open .faq-a{max-height:400px}
+
+/* ---------- comparison table ---------- */
+.cmp-wrap{overflow-x:auto;margin-top:40px;border:1px solid var(--line);border-radius:var(--radius)}
+table.cmp{width:100%;border-collapse:collapse;min-width:640px}
+table.cmp th,table.cmp td{padding:14px 16px;text-align:left;font-size:13.5px;border-bottom:1px solid var(--line);vertical-align:top}
+table.cmp th{font-family:'Space Grotesk';font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--mist);background:var(--pitch2)}
+table.cmp td.rowlabel{font-family:'Space Grotesk';font-weight:700;color:var(--chalk);white-space:nowrap}
+table.cmp td.hilite{color:var(--payout);font-weight:600}
+table.cmp tr:last-child td{border-bottom:none}
+
+/* ---------- audiences ---------- */
+#momentumGrid{grid-template-columns:repeat(4,1fr)}
+@media(max-width:940px){#momentumGrid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){#momentumGrid{grid-template-columns:1fr}}
+.aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
+@media(max-width:780px){.aud-grid{grid-template-columns:1fr}}
+.aud{background:var(--pitch2);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.aud h3{font-family:'Anton';font-size:21px;text-transform:uppercase;margin-bottom:10px}
+.aud p{font-size:14.5px;color:var(--chalk-dim)}
+.aud .k{color:var(--payout);font-family:'Space Grotesk';font-weight:700}
+
+/* ---------- pillars ---------- */
+.pillars{margin-top:42px;border-top:1px solid var(--line)}
+.pillar{display:grid;grid-template-columns:64px 260px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.pillar .no{font-family:'Anton';font-size:30px;color:var(--maple)}
+.pillar .nm{font-family:'Space Grotesk';font-weight:700;font-size:15px;letter-spacing:.02em}
+.pillar .tx{font-size:14.5px;color:var(--chalk-dim)}
+@media(max-width:720px){.pillar{grid-template-columns:48px 1fr}.pillar .tx{grid-column:2}}
+
+footer{border-top:1px solid var(--line);padding:56px 0 72px;color:var(--mist);font-size:14px}
+footer .fbrand{font-family:'Anton';font-size:18px;color:var(--chalk);text-transform:uppercase;margin-bottom:10px}
+footer p{max-width:720px}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Pathway&nbsp;to&nbsp;Profit</a>
+    <div class="nav-links">
+      <a href="#momentum">Momentum</a>
+      <a href="#problem">The problem</a>
+      <a href="#pathway">The pathway</a>
+      <a href="#simulator">Simulator</a>
+      <a href="#board-value">Value to Canada Soccer</a>
+      <a href="#faq">Objections</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-lines" aria-hidden="true">
+    <div class="arc"></div><div class="arc a2"></div>
+  </div>
+  <div class="wrap">
+    <span class="eyebrow">A proposal for Canada Soccer · July 2026</span>
+    <h1 class="display"><span class="up">Talent flows up.</span><br><span class="back">Money flows back.</span></h1>
+    <p class="sub">A domestic training compensation and solidarity framework that pays Canadian youth clubs when the players they developed turn professional — funded by the transfer market, administered on the National Soccer Registry, and required to cut registration fees.</p>
+    <div class="cta-row">
+      <a class="btn gold" href="#simulator">Run the financial simulator</a>
+      <a class="btn ghost" href="#pathway">See the pathway</a>
+    </div>
+    <div class="tag data">Built on <b>FIFA RSTP Art. 21 · Annexe 5</b> &nbsp;·&nbsp; Backed by a <b>$1B federal sport investment</b> (July 2026) &nbsp;·&nbsp; Delivered on the <b>National Soccer Registry</b></div>
+  </div>
+</header>
+
+<section id="momentum">
+  <div class="wrap">
+    <span class="eyebrow gold">The window</span>
+    <h2 class="display sec">The world is already<br>watching Canada</h2>
+    <p class="prose">Co-hosting the 2026 FIFA World Cup produced the best-reviewed Canadian soccer moment on record — and a fanbase openly asking what comes next. This proposal is built to convert that attention into permanent governance value, not let it fade with the tournament.</p>
+    <div class="stat-grid" id="momentumGrid">
+      <div class="stat gold">
+        <div class="big data">$1 Billion</div>
+        <div class="lbl">Federal investment in sport announced by PM Mark Carney on July 19, 2026 — the largest in Canadian history — explicitly backing the Canada Soccer National Training Centre and funding talent "from playground to podium."</div>
+      </div>
+      <div class="stat gold">
+        <div class="big data">#1 &amp; #3</div>
+        <div class="lbl">Vancouver and Toronto's independent Sports Illustrated rankings among all 16 World Cup host cities — Canada supplied 2 of the tournament's 3 best-reviewed experiences, separated only by Seattle.</div>
+      </div>
+      <div class="stat">
+        <div class="big data">122 → 26</div>
+        <div class="lbl">Canada's FIFA world ranking climb from 2014 to its September 2025 record high, before reaching the Round of 16 for the first time in program history.</div>
+      </div>
+      <div class="stat">
+        <div class="big data">80,000+</div>
+        <div class="lbl">Members of r/CanadaSoccer alone — a fanbase already debating, in public, what structural reform takes the program from top-30 to top-15 or top-10 for good.</div>
+      </div>
+    </div>
+    <p class="prose" style="margin-top:28px">A World Cup ranking bump is historically temporary unless the pipeline behind it gets deeper. Two days after the tournament closed, the federal government put real capital behind that idea — which means the Transition Fund this framework needs may not have to come from Canada Soccer's own surplus alone. The federation that aligns a ready-built reform with a funding priority the Prime Minister has already announced converts a moment into a mandate; the one that waits for a quieter budget cycle gets a memo instead of a headline.</p>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="wrap">
+    <span class="eyebrow">The problem</span>
+    <h2 class="display sec">The pyramid is funded<br>by parents' invoices</h2>
+    <p class="prose">Competitive youth soccer in Canada is a <b>pay-to-play</b> system: the family is the only investor in a player's development. The club that builds a professional's technical foundation between ages eight and fifteen captures none of the value it creates — unless the player later transfers <b>internationally</b>, where FIFA's rules already send five percent back. Inside Canada, the same move returns nothing.</p>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="big data">$2,000–$5,000</div>
+        <div class="lbl">What families pay per season for competitive club soccer in Canada — before travel, camps, and private training.</div>
+      </div>
+      <div class="stat">
+        <div class="big data">$0</div>
+        <div class="lbl">What a Canadian youth club receives today when its former player signs a first professional contract or transfers within Canada.</div>
+      </div>
+      <div class="stat gold">
+        <div class="big data money">5%</div>
+        <div class="lbl">What FIFA's solidarity mechanism already returns to training clubs on international transfers. Alphonso Davies's Edmonton youth clubs were paid this way. This framework mirrors it domestically.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pathway">
+  <div class="wrap">
+    <span class="eyebrow gold">The pathway</span>
+    <h2 class="display sec">One pipeline,<br>two directions</h2>
+    <p class="prose">Every tier below already exists. What's new is the right-hand column: what each tier <b>earns</b> when its players move up.</p>
+
+    <div class="ladder">
+      <div class="flowline" aria-hidden="true">
+        <span class="pulse up" style="animation-delay:0s"></span>
+        <span class="pulse up" style="animation-delay:2.2s"></span>
+        <span class="pulse down" style="animation-delay:1.1s"></span>
+        <span class="pulse down" style="animation-delay:3.6s"></span>
+      </div>
+
+      <div class="tier pro">
+        <div>
+          <div class="t-name">International transfer</div>
+          <div class="t-desc">A Canadian-trained player is sold abroad. FIFA's solidarity mechanism and training compensation already apply.</div>
+        </div>
+        <div class="earns">Pays 5% back to every Canadian training club, ages 12–23 — already law, already honoured by Canada.</div>
+      </div>
+
+      <div class="tier pro">
+        <div>
+          <div class="t-name">Professional — CPL · MLS · NSL</div>
+          <div class="t-desc">First professional contracts and domestic transfers between Canadian clubs.</div>
+        </div>
+        <div class="earns">Proposed: pays domestic training compensation on first contracts and 5% domestic solidarity on transfer fees.</div>
+      </div>
+
+      <div class="tier">
+        <div>
+          <div class="t-name">League1 Canada &amp; pro academies</div>
+          <div class="t-desc">League1 Ontario, BC, Alberta and Ligue1 Québec; TFC, Whitecaps, CF Montréal and CPL academy programs.</div>
+        </div>
+        <div class="earns">Receives solidarity shares for training seasons ages 16–23 (10% of the pool per season).</div>
+      </div>
+
+      <div class="tier">
+        <div>
+          <div class="t-name">Provincial high-performance</div>
+          <div class="t-desc">OPDL, BCSPL, Ligue de développement du Québec and equivalent provincial streams.</div>
+        </div>
+        <div class="earns">Receives solidarity shares for its training seasons; higher training-compensation rates when licensed.</div>
+      </div>
+
+      <div class="tier">
+        <div>
+          <div class="t-name">Licensed youth clubs</div>
+          <div class="t-desc">Clubs graded under Canada Soccer's Club Licensing Program — Quality Soccer Provider up to the National Youth Club Licence.</div>
+        </div>
+        <div class="earns">Licence tier sets the training-compensation rate: up to $1,500 per training season per professional produced.</div>
+      </div>
+
+      <div class="tier">
+        <div>
+          <div class="t-name">Grassroots &amp; community clubs</div>
+          <div class="t-desc">Where every Canadian professional starts. Today: funded entirely by registration fees.</div>
+        </div>
+        <div class="earns">Receives payments for training seasons from age 12 — and commits 25% of proceeds to fee relief under the Access Covenant.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="simulator">
+  <div class="wrap">
+    <span class="eyebrow gold">Financial simulator</span>
+    <h2 class="display sec">Follow the money<br>back down</h2>
+    <p class="prose">Set a transfer fee, sketch the player's journey from age 12 to 23, and watch the 5% solidarity pool distribute to each training club — using the exact age-weighting in FIFA RSTP Annexe 5, which this framework adopts domestically.</p>
+
+    <div class="sim-shell">
+      <div class="panel">
+        <h3>1 · Transfer fee (CAD)</h3>
+        <div class="fee-display data" id="feeDisplay">$10,000,000</div>
+        <div class="fee-note">Drag, type, or pick a scenario</div>
+        <input type="range" id="feeRange" min="100000" max="30000000" step="50000" value="10000000" aria-label="Transfer fee in Canadian dollars">
+        <div class="fee-row">
+          <input class="fee-input data" type="number" id="feeInput" min="0" step="10000" value="10000000" aria-label="Transfer fee, exact amount">
+          <button class="chip" data-fee="500000">$500K · domestic CPL→MLS</button>
+          <button class="chip" data-fee="10000000">$10M · to Europe</button>
+          <button class="chip" data-fee="22000000">$22M · a Davies-scale move</button>
+        </div>
+
+        <hr class="divider">
+
+        <h3>2 · The player's journey, ages 12–23</h3>
+        <div class="club-legend" id="clubLegend" role="group" aria-label="Select a club, then tap ages to assign"></div>
+        <div class="age-grid" id="ageGrid"></div>
+        <p class="hint">Select a club above, then tap the ages it trained the player. Double-tap a club's name to rename it. Seasons 12–15 each carry 5% of the pool; 16–23 each carry 10%.</p>
+        <div class="preset-row">
+          <button class="chip" id="presetClassic">Preset: classic Canadian path</button>
+          <button class="chip" id="presetDavies">Preset: Davies-style journey</button>
+          <button class="chip" id="presetClear">Clear</button>
+        </div>
+      </div>
+
+      <div class="panel" aria-live="polite">
+        <h3>3 · Solidarity distribution</h3>
+        <div class="pool">
+          <span class="amt data" id="poolAmt">$500,000</span>
+          <span class="cap">= 5% solidarity pool on this transfer</span>
+        </div>
+        <div class="dist" id="dist"></div>
+        <div class="method">
+          Method: 5% of the fee is deducted and split by training season — 5% of the pool per season for ages 12–15, 10% per season for ages 16–23 (FIFA RSTP Annexe 5). Shares for unassigned seasons are shown as unallocated; under FIFA practice they are retained or redirected to youth development. The Canada Soccer admin fee shown above applies only to the proposed domestic pool (Pillar 1), not to Canada's existing international solidarity obligations, and is capped at 4% under the framework. Figures are illustrative, in CAD, and model the proposed domestic mirror of rules Canada already honours internationally.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="audiences">
+  <div class="wrap">
+    <span class="eyebrow">Who this serves</span>
+    <h2 class="display sec">Three audiences,<br>one system</h2>
+    <div class="aud-grid">
+      <div class="aud">
+        <h3>Players &amp; parents</h3>
+        <p>Your fees stop being the sport's only revenue. Under the <span class="k">Access Covenant</span>, at least 25% of every dollar a club receives must fund registration subsidies and fee relief — so each professional the system produces makes the game cheaper for the next family, not more expensive.</p>
+      </div>
+      <div class="aud">
+        <h3>Youth clubs</h3>
+        <p>Player development becomes a <span class="k">revenue line</span>, not a donation. Clean registration records and a Club Licence set your rate: up to <span class="k">$1,500 per training season</span> when a player signs pro, plus your weighted share of 5% on every domestic and international transfer for life.</p>
+      </div>
+      <div class="aud">
+        <h3>Canada Soccer</h3>
+        <p>A one-time <span class="k">$1.0–1.5M</span> allocation from the 2026 surplus builds permanent market infrastructure on the National Soccer Registry. The recurring money is the professional game's, the administration self-funds, and licensing adoption accelerates because a licence now has a price tag attached.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="board-value">
+  <div class="wrap">
+    <span class="eyebrow gold">The case for the board</span>
+    <h2 class="display sec">This isn't a pass-through.<br>It's a new asset.</h2>
+    <p class="prose">Every section so far makes the case for clubs and families. This one makes the case for Canada Soccer's own balance sheet and mandate — because that's what gets approved.</p>
+    <div class="value-rail">
+      <div class="vcard">
+        <div class="horizon">Short term<span class="yrs">2026–2027</span></div>
+        <div>
+          <ul>
+            <li>A funded, headline-ready governance reform announced inside the World Cup attention window</li>
+            <li>A natural fit for the federal government's new $1B sport investment — reduces or eliminates the need to draw the Transition Fund from Canada Soccer's own surplus</li>
+            <li>A concrete answer to the structural-change conversation already happening among fans</li>
+            <li>A new systemic-reform narrative for the Canada Rising $25M campaign, beyond another grant round</li>
+            <li>First-mover status: no Concacaf federation currently runs a FIFA-aligned domestic solidarity system</li>
+          </ul>
+          <span class="worth">Reputational capital + stronger donor case</span>
+        </div>
+      </div>
+      <div class="vcard">
+        <div class="horizon">Mid term<span class="yrs">2027–2029</span></div>
+        <div>
+          <ul>
+            <li>A new, perpetual revenue line for Canada Soccer via the capped administration fee on every distribution</li>
+            <li>Materially better National Soccer Registry data — a FIFA Connect compliance asset the federation needs anyway</li>
+            <li>Faster Club Licensing adoption once a licence carries a quantifiable financial return</li>
+            <li>Deeper domestic pipelines supporting CPL and NSL roster mandates already in place</li>
+          </ul>
+          <span class="worth">≈$40K–$56K/yr direct federation revenue at modelled volumes, and growing</span>
+        </div>
+      </div>
+      <div class="vcard">
+        <div class="horizon">Long term<span class="yrs">2030+</span></div>
+        <div>
+          <ul>
+            <li>A structurally deeper talent pool feeding both national teams — the actual mechanism behind a top-30-to-top-15/10 climb</li>
+            <li>A stronger negotiating position for future media-rights and sponsorship renewals, built on product quality</li>
+            <li>An exportable governance model Canada Soccer can point to in Concacaf and FIFA forums</li>
+          </ul>
+          <span class="worth">Compounding competitive and commercial value</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap">
+    <span class="eyebrow gold">The framework</span>
+    <h2 class="display sec">Five pillars</h2>
+    <div class="pillars">
+      <div class="pillar"><div class="no">1</div><div class="nm">Domestic Solidarity Contribution</div><div class="tx">5% of every domestic professional transfer fee, distributed to Canadian training clubs (ages 12–23) using FIFA's existing weighting. Adopted as a league sanctioning condition — the same governance mechanism the CPL already uses for its salary cap — not a rate imposed externally by Canada Soccer.</div></div>
+      <div class="pillar"><div class="no">2</div><div class="nm">Domestic Training Compensation</div><div class="tx">Fixed payments per training season when a player signs a first professional contract in Canada — $500 to $1,500 per season, tiered by the training club's Club Licensing status.</div></div>
+      <div class="pillar"><div class="no">3</div><div class="nm">Domestic Clearing House</div><div class="tx">A software layer on the National Soccer Registry: every player accrues an Electronic Player Passport; contract registration triggers automatic calculation, invoicing, collection, and disbursement with a public annual report.</div></div>
+      <div class="pillar"><div class="no">4</div><div class="nm">Transition Fund</div><div class="tx">$1.0–1.5M capitalizes the platform and a payment-guarantee float — sourced from the projected $6.55M 2026 surplus, the federal government's newly announced $1B sport investment, or a matching combination of both. Steady-state costs self-fund from a capped ≤4% administration fee.</div></div>
+      <div class="pillar"><div class="no">5</div><div class="nm">Access Covenant</div><div class="tx">Recipient clubs reinvest a minimum 25% of proceeds into registration-fee relief, verified through licensing renewals — the clause that turns a transfer-market policy into an anti-pay-to-play policy.</div></div>
+    </div>
+    <div class="cta-row" style="margin-top:38px">
+      <a class="btn gold" href="#simulator">Back to the simulator</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <span class="eyebrow">Before you ask</span>
+    <h2 class="display sec">The three objections<br>in the room</h2>
+    <p class="prose">A proposal survives its first hearing if it has already answered the pushback. Tap each question.</p>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Hasn't this been proposed and rejected before?</span><span class="plus">+</span>
+        </button>
+        <div class="faq-a"><p>No. Canada Soccer's current Rules and Regulations (November 2025) cover domestic transfers purely administratively — registration timelines, provincial approval, a processing fee. There is no provision anywhere for a training club to be paid on a domestic move or first contract. The mechanism has never existed to be rejected. The only real precedent runs the other way: Canada already honours FIFA's <em>international</em> solidarity mechanism today, most visibly in the Alphonso Davies transfer.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Doesn't this create antitrust exposure?</span><span class="plus">+</span>
+        </button>
+        <div class="faq-a"><p>Less than the U.S. precedent people will cite, and the framework is built to keep it that way. The MLS Players Association's objection targeted a scheme MLS tried to impose unilaterally, touching player consent, inside one league. Here, payments run club-to-club only; Pillar 1 is adopted as a league sanctioning condition — how the CPL already runs its salary cap — not a Canada Soccer mandate; and Canada already complies with an economically identical international mechanism. A formal Competition Act opinion is still an explicit Phase 0 deliverable.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Is there a working precedent in North America?</span><span class="plus">+</span>
+        </button>
+        <div class="faq-a"><p>Yes — MLS itself. The MLS NEXT Development Grant program already pays non-MLS academies when a player they developed reaches an MLS first team as a Homegrown player. The league most assumed to oppose this idea has voluntarily adopted its own version of it. The difference: MLS's version is a discretionary grant it can change or cancel; this framework is a fixed, registry-driven entitlement applied consistently across every Canadian club and league. See the comparison below.</p></div>
+      </div>
+    </div>
+
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr><th></th><th>Current Canadian model</th><th>MLS NEXT Development Grant</th><th>Pathway to Profit</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="rowlabel">Trigger</td><td>International transfer only</td><td>Player reaches MLS first team as Homegrown</td><td>Domestic transfer or any first pro contract in Canada</td></tr>
+          <tr><td class="rowlabel">Basis</td><td>FIFA RSTP, mandatory</td><td>League discretion, voluntary</td><td class="hilite">League-adopted rule, formula-based</td></tr>
+          <tr><td class="rowlabel">Who's eligible</td><td>Any training club, ages 12–23</td><td>MLS NEXT Elite Academies only</td><td class="hilite">Any licensed Canadian club, ages 12–23</td></tr>
+          <tr><td class="rowlabel">Administered by</td><td>FIFA Clearing House</td><td>MLS, internally</td><td class="hilite">Canada Soccer, on the National Soccer Registry</td></tr>
+          <tr><td class="rowlabel">Durability</td><td>Permanent (FIFA statute)</td><td>Can be changed or cancelled anytime</td><td class="hilite">Permanent, rules-based, reviewed biennially</td></tr>
+          <tr><td class="rowlabel">Revenue to the federation</td><td>None</td><td>None</td><td class="hilite">Capped ≤4% admin fee on every distribution</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fbrand">Pathway to Profit</div>
+    <p>A companion to the full written proposal to Canada Soccer. Financial figures for existing mechanisms (2026 surplus projection, FIFA solidarity rules, pay-to-play cost ranges, the Davies precedent) are drawn from public reporting and FIFA regulations; framework rates and volumes are proposals for validation in Phase 0. All amounts CAD. Prepared July 2026.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var fmt = function(n){ return "$" + Math.round(n).toLocaleString("en-CA"); };
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Weights: index 0 => age 12 ... index 11 => age 23
+  var AGES = [];
+  for (var a = 12; a <= 23; a++) AGES.push(a);
+  var weightFor = function(age){ return age <= 15 ? 0.05 : 0.10; };
+
+  var clubs = [
+    { id:0, name:"Community Club",      color:"#7FB2A0" },
+    { id:1, name:"Licensed Youth Club", color:"#5B8DD6" },
+    { id:2, name:"Pro Academy",         color:"#C77BD1" },
+    { id:3, name:"Selling Club",        color:"#E0332C" }
+  ];
+  var UNASSIGNED = -1;
+
+  // assignment[i] = club id or -1, for ages 12..23
+  var assignment = [0,0,0,1,1,2,2,3,3,3,3,3]; // sensible default = classic path
+  var activeClub = 0;
+  var fee = 10000000;
+
+  var feeRange = document.getElementById("feeRange");
+  var feeInput = document.getElementById("feeInput");
+  var feeDisplay = document.getElementById("feeDisplay");
+  var legend = document.getElementById("clubLegend");
+  var grid = document.getElementById("ageGrid");
+  var poolAmt = document.getElementById("poolAmt");
+  var dist = document.getElementById("dist");
+
+  function setFee(v, fromRange){
+    fee = Math.max(0, Number(v) || 0);
+    feeDisplay.textContent = fmt(fee);
+    if (!fromRange) feeRange.value = Math.min(Math.max(fee, feeRange.min), feeRange.max);
+    feeInput.value = fee;
+    render();
+  }
+
+  feeRange.addEventListener("input", function(){ setFee(this.value, true); });
+  feeInput.addEventListener("input", function(){ setFee(this.value, false); });
+  document.querySelectorAll(".chip[data-fee]").forEach(function(btn){
+    btn.addEventListener("click", function(){ setFee(this.dataset.fee, false); });
+  });
+
+  function buildLegend(){
+    legend.innerHTML = "";
+    clubs.forEach(function(c){
+      var b = document.createElement("button");
+      b.className = "club-btn" + (activeClub === c.id ? " on" : "");
+      b.setAttribute("aria-pressed", activeClub === c.id ? "true" : "false");
+      b.innerHTML = '<span class="sw" style="background:' + c.color + '"></span><span class="cn">' + c.name + '</span>';
+      b.addEventListener("click", function(){ activeClub = c.id; buildLegend(); });
+      b.addEventListener("dblclick", function(){
+        var nn = prompt("Rename club:", c.name);
+        if (nn && nn.trim()) { c.name = nn.trim().slice(0, 28); buildLegend(); render(); }
+      });
+      legend.appendChild(b);
+    });
+    var eraser = document.createElement("button");
+    eraser.className = "club-btn" + (activeClub === UNASSIGNED ? " on" : "");
+    eraser.setAttribute("aria-pressed", activeClub === UNASSIGNED ? "true" : "false");
+    eraser.innerHTML = '<span class="sw" style="background:transparent;border:1px dashed ' + "rgba(239,237,228,.4)" + '"></span>Not in Canada / erase';
+    eraser.addEventListener("click", function(){ activeClub = UNASSIGNED; buildLegend(); });
+    legend.appendChild(eraser);
+  }
+
+  function buildGrid(){
+    grid.innerHTML = "";
+    AGES.forEach(function(age, i){
+      var cellEl = document.createElement("button");
+      cellEl.className = "age";
+      cellEl.setAttribute("aria-label", "Age " + age + ", tap to assign to selected club");
+      cellEl.dataset.i = i;
+      cellEl.addEventListener("click", function(){
+        assignment[i] = (assignment[i] === activeClub) ? assignment[i] : activeClub;
+        // toggling: if already this club and eraser not selected, clicking again erases
+        if (activeClub !== UNASSIGNED && assignment[i] === activeClub && cellEl.dataset.was === String(activeClub)) {
+          assignment[i] = UNASSIGNED;
+        }
+        cellEl.dataset.was = String(assignment[i]);
+        paintGrid(); render();
+      });
+      grid.appendChild(cellEl);
+    });
+    paintGrid();
+  }
+
+  function paintGrid(){
+    Array.prototype.forEach.call(grid.children, function(cellEl, i){
+      var cid = assignment[i];
+      var c = clubs.find(function(x){ return x.id === cid; });
+      var pct = Math.round(weightFor(AGES[i]) * 100);
+      cellEl.style.borderColor = c ? c.color : "rgba(239,237,228,.14)";
+      cellEl.style.background = c ? (c.color + "22") : "var(--pitch3)";
+      cellEl.innerHTML = '<span class="n">' + AGES[i] + '</span><span class="w">' + pct + '%</span>';
+      cellEl.dataset.was = String(cid);
+    });
+  }
+
+  function render(){
+    var pool = fee * 0.05;
+    poolAmt.textContent = fmt(pool);
+
+    var totals = {}; var seasons = {};
+    clubs.forEach(function(c){ totals[c.id] = 0; seasons[c.id] = 0; });
+    var unalloc = 0, unSeasons = 0;
+
+    AGES.forEach(function(age, i){
+      var share = pool * weightFor(age);
+      var cid = assignment[i];
+      if (cid === UNASSIGNED) { unalloc += share; unSeasons++; }
+      else { totals[cid] += share; seasons[cid]++; }
+    });
+
+    var max = Math.max(pool, 1);
+    dist.innerHTML = "";
+    clubs.forEach(function(c){
+      if (seasons[c.id] === 0) return;
+      var row = document.createElement("div");
+      row.className = "d-row";
+      var pctOfPool = pool > 0 ? Math.round((totals[c.id] / pool) * 100) : 0;
+      row.innerHTML =
+        '<div class="d-head">' +
+          '<span class="d-name"><span class="sw" style="background:' + c.color + '"></span>' + c.name + '</span>' +
+          '<span class="d-amt data">' + fmt(totals[c.id]) + '</span>' +
+        '</div>' +
+        '<div class="bar"><div class="fill" style="background:' + c.color + '"></div></div>' +
+        '<div class="d-sub">' + seasons[c.id] + ' training season' + (seasons[c.id] > 1 ? 's' : '') + ' · ' + pctOfPool + '% of the pool</div>';
+      dist.appendChild(row);
+      var fill = row.querySelector(".fill");
+      var w = pool > 0 ? (totals[c.id] / max) * 100 : 0;
+      if (reduced) { fill.style.transition = "none"; fill.style.width = w + "%"; }
+      else { requestAnimationFrame(function(){ requestAnimationFrame(function(){ fill.style.width = w + "%"; }); }); }
+    });
+
+    if (unSeasons > 0) {
+      var row = document.createElement("div");
+      row.className = "d-row";
+      var pctOfPool = pool > 0 ? Math.round((unalloc / pool) * 100) : 0;
+      row.innerHTML =
+        '<div class="d-head">' +
+          '<span class="d-name" style="color:var(--mist)"><span class="sw" style="border:1px dashed rgba(239,237,228,.4)"></span>Unallocated seasons</span>' +
+          '<span class="d-amt data muted">' + fmt(unalloc) + '</span>' +
+        '</div>' +
+        '<div class="bar"><div class="fill" style="background:rgba(239,237,228,.25)"></div></div>' +
+        '<div class="d-sub">' + unSeasons + ' season' + (unSeasons > 1 ? 's' : '') + ' outside Canadian training · ' + pctOfPool + '% of the pool</div>';
+      dist.appendChild(row);
+      var fill2 = row.querySelector(".fill");
+      var w2 = pool > 0 ? (unalloc / max) * 100 : 0;
+      if (reduced) { fill2.style.transition = "none"; fill2.style.width = w2 + "%"; }
+      else { requestAnimationFrame(function(){ requestAnimationFrame(function(){ fill2.style.width = w2 + "%"; }); }); }
+    }
+
+    if (dist.children.length === 0) {
+      dist.innerHTML = '<div class="d-sub">Assign at least one training season to a club to see the distribution.</div>';
+    }
+
+    // Canada Soccer administration fee (illustrative, capped at 4% of the pool)
+    var csaFee = pool * 0.04;
+    var csaRow = document.createElement("div");
+    csaRow.className = "csa-row";
+    csaRow.innerHTML =
+      '<div class="d-head"><span class="d-name">Canada Soccer — Clearing House admin fee</span>' +
+      '<span class="d-amt data">' + fmt(csaFee) + '</span></div>' +
+      '<div class="d-sub">Capped at 4% of the pool — the federation\'s own recurring revenue for operating the Clearing House, on top of every club payment above.</div>';
+    dist.appendChild(csaRow);
+  }
+
+  // Presets
+  document.getElementById("presetClassic").addEventListener("click", function(){
+    assignment = [0,0,0,1,1,2,2,3,3,3,3,3];
+    paintGrid(); render();
+  });
+  document.getElementById("presetDavies").addEventListener("click", function(){
+    // Youth club 12-14, residency/academy 15-16, selling club 17-18, abroad 19-23
+    assignment = [0,0,0,2,2,3,3,UNASSIGNED,UNASSIGNED,UNASSIGNED,UNASSIGNED,UNASSIGNED];
+    setFee(22000000, false);
+    paintGrid(); render();
+  });
+  document.getElementById("presetClear").addEventListener("click", function(){
+    assignment = AGES.map(function(){ return UNASSIGNED; });
+    paintGrid(); render();
+  });
+
+  buildLegend();
+  buildGrid();
+  setFee(fee, false);
+
+  // FAQ accordion
+  document.querySelectorAll("#faqList .faq-q").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var item = btn.closest(".faq-item");
+      var isOpen = item.classList.contains("open");
+      document.querySelectorAll("#faqList .faq-item").forEach(function(i){
+        i.classList.remove("open");
+        i.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+      });
+      if (!isOpen) {
+        item.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
